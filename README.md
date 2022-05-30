@@ -78,6 +78,7 @@
   |POST|/users/{id}/villages|유저 마을 구독|villageId|form-data|
   |GET|/users/{id}/ward|유저의 피보호자 조회||||
   |POST|/users/{id}/guardian|유저의 보호자 등록|guardianId|form-data|
+  |GET|/users/search|유저 검색|username|||  
     
   ⚠ `/users` 제외 모든 URI는 `ROLE_USER` or `ROLE_ADMIN` 권한(로그인)이 필요합니다 ⚠
 
@@ -189,15 +190,15 @@
   ```
   #### 세팅 응답 메세지
   ```
-  등록 실패 : LOGIN/-1
-  등록 성공 : LOGIN/DEVICE_ID/USERNAME/VILLAGEID
+  등록 실패 : SETTING/-1
+  등록 성공 : SETTING/DEVICE_ID/USERNAME/VILLAGEID
   ```
   
   ### [DEVICE -> SERVER]
   
   #### 세팅 요청 메세지
   ```
-  LOGIN/DEVICE_ID/PHONE_NUMBER
+  SETTING/DEVICE_ID/PHONE_NUMBER
   ```
   
   #### 긴급 호출
