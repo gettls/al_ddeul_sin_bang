@@ -22,15 +22,17 @@ public class QDevice extends EntityPathBase<Device> {
 
     public static final QDevice device = new QDevice("device");
 
+    public final ListPath<com.timcook.capstone.message.domain.DetectMessage, com.timcook.capstone.message.domain.QDetectMessage> detectMessages = this.<com.timcook.capstone.message.domain.DetectMessage, com.timcook.capstone.message.domain.QDetectMessage>createList("detectMessages", com.timcook.capstone.message.domain.DetectMessage.class, com.timcook.capstone.message.domain.QDetectMessage.class, PathInits.DIRECT2);
+
     public final ListPath<Disabled, QDisabled> disabledInfos = this.<Disabled, QDisabled>createList("disabledInfos", Disabled.class, QDisabled.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<com.timcook.capstone.message.domain.DetectMessage, com.timcook.capstone.message.domain.QDetectMessage> messages = this.<com.timcook.capstone.message.domain.DetectMessage, com.timcook.capstone.message.domain.QDetectMessage>createList("messages", com.timcook.capstone.message.domain.DetectMessage.class, com.timcook.capstone.message.domain.QDetectMessage.class, PathInits.DIRECT2);
-
     public final EnumPath<Status> status = createEnum("status", Status.class);
 
     public final ListPath<Unconfirm, QUnconfirm> unconfirmInfos = this.<Unconfirm, QUnconfirm>createList("unconfirmInfos", Unconfirm.class, QUnconfirm.class, PathInits.DIRECT2);
+
+    public final ListPath<com.timcook.capstone.message.domain.UrgentMessage, com.timcook.capstone.message.domain.QUrgentMessage> urgentMessages = this.<com.timcook.capstone.message.domain.UrgentMessage, com.timcook.capstone.message.domain.QUrgentMessage>createList("urgentMessages", com.timcook.capstone.message.domain.UrgentMessage.class, com.timcook.capstone.message.domain.QUrgentMessage.class, PathInits.DIRECT2);
 
     public final com.timcook.capstone.user.domain.QUser user;
 

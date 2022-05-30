@@ -136,6 +136,8 @@ public class InitData {
 						.phoneNumber(Integer.toString(i))
 						.role(Role.ROLE_USER)
 						.build();
+
+				user.registerVillage(village);
 				em.persist(user);
 				em.flush();
 			}
@@ -145,6 +147,7 @@ public class InitData {
 					.password(password)
 					.email("mqtt")
 					.phoneNumber("112")
+					.village(village)
 					.role(Role.ROLE_USER)
 					.build();
 			

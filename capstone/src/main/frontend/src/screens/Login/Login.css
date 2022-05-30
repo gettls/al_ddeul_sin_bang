@@ -1,0 +1,61 @@
+
+img {
+    margin-top: 15%;
+    margin-left: 25%;
+    width: 85%;
+    max-width: 540px;
+}
+
+#loginform {
+    width: 75%;
+    max-width: 500px;
+    min-width: 420px;
+    padding: 7%;
+    padding-right: 1%;
+    margin: 20%;
+    margin-left: 8%;
+    margin-top: 25%;
+    border-style: solid;
+    border-color: #575757;
+    border-width: 4px;
+    border-radius: 8%;
+    background-color:#78C46F;
+    opacity: 95%;
+}
+
+#loginform > input {
+    margin-left: 0%;
+    margin-bottom: 2%;
+    padding: 5%;
+    height: 30px;
+    width: 85%;
+    border: none;
+    
+    border-radius: 15px;
+    max-width: 600px;
+}
+
+#loginbutton {
+    margin-left: 62%;
+    margin-top: 5%;
+    padding: 10px 1px;
+    font-size: 1rem;
+    color: #EEEEEE;
+    background-color: #78C46F;
+    font-weight: 550;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+#loginbutton:hover {
+    background-color: #5C9C55;
+    color: #C3C7C3;
+} 
+
+#loginh1 {
+    margin: 0%;
+    margin-bottom: 8%;
+    font-weight: 600;
+}
