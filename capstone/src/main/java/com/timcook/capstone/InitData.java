@@ -70,7 +70,7 @@ public class InitData {
 									.build();
 				
 				User user = User.builder()
-						.username("user" + Integer.toString(i+1))
+						.username("devuser" + Integer.toString(i+1))
 						.password(password)
 						.email("user" + Integer.toString(i+1))
 						.phoneNumber(Integer.toString(i))
@@ -130,12 +130,15 @@ public class InitData {
 			}
 			for (int i=3;i<6;i++) {
 				User user = User.builder()
-						.username("user" + Integer.toString(i+1))
+						.username("tmpuser" + Integer.toString(i+1))
 						.password(password)
 						.email("user" + Integer.toString(i+1))
 						.phoneNumber(Integer.toString(i))
 						.role(Role.ROLE_USER)
 						.build();
+				
+				user.registerVillage(village);
+				
 				em.persist(user);
 				em.flush();
 			}
