@@ -2,12 +2,9 @@ package com.timcook.capstone.device.domain;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +15,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.timcook.capstone.file.domain.File;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,16 +22,16 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(value = AuditingEntityListener.class)
-public class Unconfirm {
+public class Confirm {
 
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Id @GeneratedValue
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "DEVICE_ID")
 	private Device device;
 	
@@ -45,5 +41,4 @@ public class Unconfirm {
 	
 	@CreatedDate
 	private LocalDateTime createdTime;
-	
 }

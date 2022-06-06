@@ -85,4 +85,9 @@ public class DeviceController {
 	public ResponseEntity<List<UnconfirmResponse>> getUnconfirm(@PathVariable Long id){
 		return ResponseEntity.ok(deviceService.getUncofirm(id));
 	}
+	
+	@GetMapping("/{id}/confirm")
+	public ResponseEntity<List<UnconfirmResponse>> getconfirm(@PathVariable Long id){
+		return ResponseEntity.ok(deviceService.getCofirm(id));
+	}
 }

@@ -41,6 +41,7 @@ public class DetectMessageService{
 		List<NotificationRequest> notificationRequests = makeNoticiation(detectMessage);
 		
 		log.info("SET NOTIFICATION");
+		
 		log.info("GAUR SIZE : {}",guardians.size());
 		
 		for(User guardian : guardians) {

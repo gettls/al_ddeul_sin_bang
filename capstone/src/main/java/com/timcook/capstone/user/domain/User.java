@@ -52,7 +52,6 @@ public class User{
 	private Long id;
 	
 	@Column(length = 10, nullable = false)
-	@Size(max = 10)
 	@NotNull
 	private String username;
 	
@@ -78,7 +77,7 @@ public class User{
 	@JoinColumn(name = "WARD_USER_ID")
 	private User ward;
 	
-	@OneToMany(mappedBy = "ward")
+	@OneToMany(mappedBy = "ward", fetch = FetchType.EAGER)
 	private List<User> guardians = new ArrayList<>();
 	
 	@ManyToOne(fetch = FetchType.LAZY)

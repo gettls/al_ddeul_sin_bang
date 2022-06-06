@@ -65,6 +65,7 @@ public class Device {
 	private List<Disabled> disabledInfos = new ArrayList<>();
 	
 	
+	
 	@Builder
 	public Device(Village village, User user, Status status) {
 		this.village = village;

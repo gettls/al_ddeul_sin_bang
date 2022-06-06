@@ -16,6 +16,7 @@ import com.timcook.capstone.admin.repository.AdminRepository;
 import com.timcook.capstone.device.dto.DeviceResponse;
 import com.timcook.capstone.user.domain.Role;
 import com.timcook.capstone.user.domain.User;
+import com.timcook.capstone.user.dto.DeviceUserCreateRequest;
 import com.timcook.capstone.user.dto.UserCreateRequest;
 import com.timcook.capstone.user.dto.UserResponse;
 import com.timcook.capstone.user.repository.UserRepository;
@@ -65,7 +66,6 @@ public class UserService {
 		return UserResponse.from(user);
 	}
 	
-	
 	@Transactional
 	public UserResponse registerInformation(Long userId, UserCreateRequest userCreateRequest) {
 		User user = userRepository.findById(userId)
@@ -78,6 +78,12 @@ public class UserService {
 	
 	public UserResponse findByEmail(String email) {
 		User user = userRepository.findByEmail(email)
+								.orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+		return UserResponse.from(user);
+	}
+	
+	public UserResponse findByPhoneNumber(String phoneNumber) {
+		User user = userRepository.findByPhoneNumber(phoneNumber)
 								.orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
 		return UserResponse.from(user);
 	}
@@ -187,5 +193,13 @@ public class UserService {
 	
 	public List<UserResponse> search(Long villageId, String username) {
 		return userRepositoryImpl.searchBy(villageId, username);
+	}
+	
+	@Transactional
+	public UserResponse registerDeviceUser(DeviceUserCreateRequest deviceUserCreateRequest) {
+		log.info("username = {}", deviceUserCreateRequest.getUsername());
+		User user = deviceUserCreateRequest.toEntity();
+		userRepository.save(user);
+		return UserResponse.from(user);
 	}
 }

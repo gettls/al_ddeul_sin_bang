@@ -129,4 +129,7 @@ public class DeviceService {
 		return deviceRepositoryImpl.getUnconfirm(deviceId);
 	}
 	
+	public List<UnconfirmResponse> getCofirm(Long deviceId){
+		return deviceRepositoryImpl.getUnconfirm(deviceId);
+	}
 }

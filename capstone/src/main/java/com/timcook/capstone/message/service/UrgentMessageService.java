@@ -16,6 +16,7 @@ import com.timcook.capstone.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
+@Transactional(readOnly = true)
 @Service
 @RequiredArgsConstructor
 public class UrgentMessageService {

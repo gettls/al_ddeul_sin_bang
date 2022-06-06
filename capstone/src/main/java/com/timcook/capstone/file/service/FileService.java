@@ -79,7 +79,7 @@ public class FileService {
 				.forEach(device -> {
 					log.info("==========BUFFER ADD===========");
 					MqttBuffer.CONFIRM_BUFFER.add(Pair.of(device.getId(), file.getId()));
-					MqttBuffer.RECIVE_BUFFER.add(Pair.of(device.getId(), file.getId()));
+					MqttBuffer.RECIEVE_BUFFER.add(Pair.of(device.getId(), file.getId()));
 				});
 		
 		return file.getId();
@@ -97,7 +97,7 @@ public class FileService {
 			
 			disabledService.save(getDisabledDevices(fileId));
 			
-			unconfirmService.save(getUnconfirmDevices(fileId));
+			unconfirmService.save(fileRepository.getById(fileId), getUnconfirmDevices(fileId));
 			
 		}catch (InterruptedException e) {
 			System.err.format("IOEXCEPTION: %s%n",e);
@@ -105,10 +105,12 @@ public class FileService {
 	}
 	
 	private List<Long> getDisabledDevices(Long fileId) {
-		List<Long> disabledDevices = MqttBuffer.RECIVE_BUFFER.stream()
+		List<Long> disabledDevices = MqttBuffer.RECIEVE_BUFFER.stream()
 				.filter(p -> p.getSecond().equals(fileId))
 				.map(p -> p.getFirst())
 				.collect(Collectors.toList());
+		
+		MqttBuffer.RECIEVE_BUFFER.removeIf(p -> p.getSecond().equals(fileId));
 		
 		return disabledDevices;
 	}
@@ -118,6 +120,8 @@ public class FileService {
 					.filter(p -> p.getSecond().equals(fileId))
 					.map(p -> p.getFirst())
 					.collect(Collectors.toList());
+		
+		MqttBuffer.CONFIRM_BUFFER.removeIf(p -> p.getSecond().equals(fileId));
 		
 		return unconfirmDevices;
 	}

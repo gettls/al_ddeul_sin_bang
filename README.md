@@ -70,6 +70,7 @@
   |GET|/users|모든 유저 조회|||
   |POST|/users|유저 생성|email|form-data|
   |GET|/users/{email}|특정 유저 조회|||
+  |GET|/users/phoneNumber|유저 연락처로 조회|phoneNumber|||
   |PUT|/users/{id}|유저 정보 기입|username, phoneNumber||
   |DELETE|/users/{id}|유저 삭제|||
   |PUT|/users/admins/{id}|이장으로 변경|||
@@ -79,6 +80,7 @@
   |GET|/users/{id}/ward|유저의 피보호자 조회||||
   |POST|/users/{id}/guardian|유저의 보호자 등록|guardianId|form-data|
   |GET|/users/search|유저 이름, 마을 기준으로 검색|username, villageId|||
+  |POST|/users/device-owner|이장의 단말기 사용자 등록용|username, phoneNumber, address|||
     
   ⚠ `/users` 제외 모든 URI는 `ROLE_USER` or `ROLE_ADMIN` 권한(로그인)이 필요합니다 ⚠
 
@@ -149,6 +151,7 @@
   |POST|/devices/{id}/villages|단말기 사용 마을 등록|villageId|form-data|
   |GET|/devices/{deviceId}/disabled|특정 단말기의 연결장애 조회|||
   |GET|/devices/{deviceId}/unconfirm|특정 단말기의 방송 미확인 조회|||
+  |GET|/devices/{deviceId}/confirm|특정 단말기의 미확인 방송 확인 기록 조회|||
 
   ⚠ 모든 URI는 `ROLE_ADMIN` 권한(로그인)이 필요합니다 ⚠
     
