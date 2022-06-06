@@ -9,7 +9,7 @@ import com.timcook.capstone.device.dto.UnconfirmResponse;
 public interface CustomDeviceRepository {
 	
 	List<DisabledResponse> getDisabled(Long deviceId);
-	List<UnconfirmResponse> getUnconfirm(Long deviceId);
+	UnconfirmResponse getUnconfirm(Long deviceId);
 	List<ConfirmResponse> getconfirm(Long deviceId);
 	
 }

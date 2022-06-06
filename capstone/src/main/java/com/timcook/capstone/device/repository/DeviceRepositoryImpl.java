@@ -35,12 +35,13 @@ public class DeviceRepositoryImpl implements CustomDeviceRepository{
 	}
 
 	@Override
-	public List<UnconfirmResponse> getUnconfirm(Long deviceId) {
+	public UnconfirmResponse getUnconfirm(Long deviceId) {
 		return jpaQueryFactory.select(new QUnconfirmResponse(
 					unconfirm.file.id, unconfirm.file.title, unconfirm.createdTime))
 				.from(unconfirm)
 				.where(unconfirm.device.id.eq(deviceId))
-				.fetch();
+				.orderBy(unconfirm.createdTime.asc())
+				.fetchFirst();
 	}
 
 	@Override

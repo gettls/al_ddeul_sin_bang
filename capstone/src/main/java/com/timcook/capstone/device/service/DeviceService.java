@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.timcook.capstone.device.domain.Device;
+import com.timcook.capstone.device.dto.ConfirmResponse;
 import com.timcook.capstone.device.dto.DeviceRegisterUserRequest;
 import com.timcook.capstone.device.dto.DeviceRegisterVillageRequest;
 import com.timcook.capstone.device.dto.DeviceResponse;
@@ -125,11 +126,11 @@ public class DeviceService {
 		return deviceRepositoryImpl.getDisabled(deviceId);
 	}
 
-	public List<UnconfirmResponse> getUncofirm(Long deviceId){
+	public UnconfirmResponse getUncofirm(Long deviceId){
 		return deviceRepositoryImpl.getUnconfirm(deviceId);
 	}
 	
-	public List<UnconfirmResponse> getCofirm(Long deviceId){
-		return deviceRepositoryImpl.getUnconfirm(deviceId);
+	public List<ConfirmResponse> getConfirm(Long deviceId){
+		return deviceRepositoryImpl.getconfirm(deviceId);
 	}
 }

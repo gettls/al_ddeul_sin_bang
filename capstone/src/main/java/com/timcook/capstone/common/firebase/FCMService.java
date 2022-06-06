@@ -31,8 +31,13 @@ public class FCMService {
     public void sendMessageTo(final NotificationRequest notificationRequest) throws IOException {
     	log.info("-SEND NOTIFICATION TITLE-");
     	log.info("title = {}",notificationRequest.getTitle());
+    	log.info("title = {}",notificationRequest.getBody());
+    	log.info("title = {}",notificationRequest.getToken());
     	
-        String message = makeMessage(notificationRequest.getToken(), notificationRequest.getTitle(), notificationRequest.getBody());
+        String message = makeMessage(
+        		notificationRequest.getToken(), 
+        		notificationRequest.getTitle(), 
+        		notificationRequest.getBody());
 
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = RequestBody.create(message, MediaType.get("application/json; charset=utf-8"));
@@ -72,6 +77,7 @@ public class FCMService {
                 .fromStream(new ClassPathResource(firebaseConfigPath).getInputStream())
                 .createScoped(List.of("https://www.googleapis.com/auth/cloud-platform"));
         googleCredentials.refreshIfExpired();
+        log.info("-GET ACCESS TOKEN = {}-", googleCredentials.getAccessToken().getTokenValue());
         return googleCredentials.getAccessToken().getTokenValue();
     }
 }

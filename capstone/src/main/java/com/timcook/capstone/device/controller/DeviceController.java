@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.timcook.capstone.device.domain.Device;
+import com.timcook.capstone.device.dto.ConfirmResponse;
 import com.timcook.capstone.device.dto.DeviceCreateRequest;
 import com.timcook.capstone.device.dto.DeviceRegisterUserRequest;
 import com.timcook.capstone.device.dto.DeviceRegisterVillageRequest;
@@ -82,12 +83,12 @@ public class DeviceController {
 	}
 	
 	@GetMapping("/{id}/unconfirm")
-	public ResponseEntity<List<UnconfirmResponse>> getUnconfirm(@PathVariable Long id){
+	public ResponseEntity<UnconfirmResponse> getUnconfirm(@PathVariable Long id){
 		return ResponseEntity.ok(deviceService.getUncofirm(id));
 	}
 	
 	@GetMapping("/{id}/confirm")
-	public ResponseEntity<List<UnconfirmResponse>> getconfirm(@PathVariable Long id){
-		return ResponseEntity.ok(deviceService.getCofirm(id));
+	public ResponseEntity<List<ConfirmResponse>> getconfirm(@PathVariable Long id){
+		return ResponseEntity.ok(deviceService.getConfirm(id));
 	}
 }

@@ -10,8 +10,10 @@ import com.timcook.capstone.common.mqtt.MqttBuffer;
 import com.timcook.capstone.device.domain.Confirm;
 import com.timcook.capstone.device.domain.Device;
 import com.timcook.capstone.device.domain.Status;
+import com.timcook.capstone.device.domain.Unconfirm;
 import com.timcook.capstone.device.repository.ConfirmRepository;
 import com.timcook.capstone.device.repository.DeviceRepository;
+import com.timcook.capstone.device.repository.UnconfirmRepository;
 import com.timcook.capstone.device.service.DeviceService;
 import com.timcook.capstone.file.domain.File;
 import com.timcook.capstone.file.repository.FileRepository;
@@ -33,6 +35,7 @@ public class ReplyMessageService {
 	private final DeviceRepository deviceRepository;
 	private final FileRepository fileRepository;
 	private final ConfirmRepository confirmRepository;
+	private final UnconfirmRepository unconfirmRepository;
 	
 	@Transactional
 	public void changeStatus(ReplyMessageCreateRequest replyMessageCreateRequest) {
@@ -55,6 +58,9 @@ public class ReplyMessageService {
 												.file(file)
 												.device(device)
 												.build());
+				
+				Unconfirm unconfirm = unconfirmRepository.findByFileAndDevice(file, device);
+				unconfirmRepository.delete(unconfirm);
 			}
 			
 			MqttBuffer.CONFIRM_BUFFER.remove(Pair.of(deviceId, fileId));

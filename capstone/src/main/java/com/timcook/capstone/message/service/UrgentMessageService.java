@@ -15,10 +15,12 @@ import com.timcook.capstone.notification.service.NotificationService;
 import com.timcook.capstone.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Transactional(readOnly = true)
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UrgentMessageService {
 
 	private final UrgentMessageRepository urgentMessageRepository;
@@ -31,6 +33,8 @@ public class UrgentMessageService {
 	}
 
 	public void sendToMessage(UrgentMessage urgentMessage) {
+		log.info("URGENT_MESSAGE_SERVICFE = {}",urgentMessage.getDevice().getId());
+		log.info("URGENT_MESSAGE_SERVICFE = {}",urgentMessage.getDevice().getUser().getUsername());
 		User deviceUser = urgentMessage.getDevice().getUser();
 		List<User> guardians = deviceUser.getGuardians();
 		

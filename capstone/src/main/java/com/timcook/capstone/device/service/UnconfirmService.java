@@ -38,7 +38,6 @@ public class UnconfirmService {
 		}
 		
 		unconfirmRepository.saveAll(list);
-		
 	}
 	
 }
